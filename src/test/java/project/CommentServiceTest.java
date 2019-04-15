@@ -56,10 +56,10 @@ public class CommentServiceTest {
     @Test
     public void testCountByUser() {
         // Correct data
-        assertEquals(50, commentService.getList(1).size());
+        assertEquals(1, commentService.getList("Bret").size());
 
         // Incorrect data
-        assertNotEquals(30, commentService.getList(2).size());
+        assertNotEquals(30, commentService.getList("wrongUser").size());
     }
 
     @Test
@@ -78,17 +78,17 @@ public class CommentServiceTest {
         // Correct data
         PostDTO currentPost = postService.findById(13);
         CommentDTO ownComment = commentService.createOwnComment(currentUser.getUsername(), currentPost.getId(),
-                "testName", "testEmail", "testBody");
+                "testName", "testBody");
         assertNotNull(ownComment);
         assertEquals(currentPost.getId(), ownComment.getPostId());
+        assertEquals(currentUser.getEmail(), ownComment.getEmail());
         assertEquals(currentUser.getId(), currentPost.getUserId());
 
         // Incorrect data
         currentPost = postService.findById(4);
-        ownComment = commentService.createOwnComment(currentUser.getUsername(), currentPost.getId(),
-                "testName2", "testEmail2", "testBody2");
-        assertNotNull(ownComment);
-        assertNotEquals(currentUser.getId(), currentPost.getUserId());
+        ownComment = commentService.createOwnComment("wrongUser", currentPost.getId(),
+                "testName2", "testBody2");
+        assertNull(ownComment);
     }
 
     @Test
@@ -97,22 +97,19 @@ public class CommentServiceTest {
 
         // Correct data
         String newName = "newName";
-        String newEmail = "newEmail";
         String newBody = "newBody";
-        CommentDTO editedComment = commentService.editOwnComment(currentUser.getUsername(), 2L, newName, newEmail, newBody);
+        CommentDTO editedComment = commentService.editOwnComment(currentUser.getUsername(), 2L, newName, newBody);
 
         assertNotNull(editedComment);
         assertEquals(editedComment.getName(), newName);
-        assertEquals(editedComment.getEmail(), newEmail);
         assertEquals(editedComment.getBody(), newBody);
 
         // Incorrect data
         long commentId = 65;
-        assertNull(commentService.editOwnComment(currentUser.getUsername(), commentId, newName, newEmail, newBody));
+        assertNull(commentService.editOwnComment(currentUser.getUsername(), commentId, newName, newBody));
         CommentDTO notEditedComment = commentService.getById(commentId);
 
         assertNotEquals(notEditedComment.getName(), newName);
-        assertNotEquals(notEditedComment.getEmail(), newEmail);
         assertNotEquals(notEditedComment.getBody(), newBody);
     }
 

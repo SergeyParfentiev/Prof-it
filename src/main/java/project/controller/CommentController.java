@@ -17,9 +17,9 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @RequestMapping("/rest/comment/list/user/{id}")
-    public List<CommentDTO> getListByUserId(@PathVariable("id") long userId) {
-        return commentService.getList(userId);
+    @RequestMapping("/rest/comment/list/user/{username}")
+    public List<CommentDTO> getListByUserId(@PathVariable("username") String username) {
+        return commentService.getList(username);
     }
 
     @RequestMapping("/rest/comment/body-word-count")
@@ -29,16 +29,14 @@ public class CommentController {
 
     @RequestMapping(value = "/rest/own/comment/create", method = RequestMethod.POST)
     public CommentDTO createOwn(@RequestParam(required = false) String username, @RequestParam(required = false) Long postId,
-                                @RequestParam(required = false) String commentName, @RequestParam(required = false) String commentEmail,
-                                @RequestParam(required = false) String commentBody) {
-        return commentService.createOwnComment(username, postId, commentName, commentEmail, commentBody);
+                                @RequestParam(required = false) String commentName, @RequestParam(required = false) String commentBody) {
+        return commentService.createOwnComment(username, postId, commentName, commentBody);
     }
 
     @RequestMapping(value = "/rest/own/comment/edit", method = RequestMethod.PUT)
     public CommentDTO editOwn(@RequestParam(required = false) String username, @RequestParam(required = false) Long commentId,
-                              @RequestParam(required = false) String commentName, @RequestParam(required = false) String commentEmail,
-                              @RequestParam(required = false) String commentBody) {
-        return commentService.editOwnComment(username, commentId, commentName, commentEmail, commentBody);
+                              @RequestParam(required = false) String commentName, @RequestParam(required = false) String commentBody) {
+        return commentService.editOwnComment(username, commentId, commentName, commentBody);
     }
 
     @RequestMapping(value = "/rest/own/comment/delete", method = RequestMethod.DELETE)

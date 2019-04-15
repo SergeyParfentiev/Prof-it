@@ -55,6 +55,5 @@ public class PostService {
         return username != null && id != null && (currentUser = userService.getByUserName(username)) != null &&
                 (deletingPost = postRepository.findOne(id)) != null &&
                 currentUser.getId() == deletingPost.getUserId() && deleteById(id);
-
     }
 }

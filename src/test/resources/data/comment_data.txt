@@ -10,7 +10,7 @@
     "postId": 1,
     "id": 2,
     "name": "quo vero reiciendis velit similique earum",
-    "email": "Jayne_Kuhic@sydney.com",
+    "email": "Sincere@april.biz",
     "body": "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et"
   },
   {
@@ -416,7 +416,7 @@
     "postId": 12,
     "id": 60,
     "name": "expedita libero quos cum commodi ad",
-    "email": "Americo@estrella.net",
+    "email": "Shanna@melissa.tv",
     "body": "error eum quia voluptates alias repudiandae\naccusantium veritatis maiores assumenda\nquod impedit animi tempore veritatis\nanimi et et officiis labore impedit blanditiis repudiandae"
   },
   {
